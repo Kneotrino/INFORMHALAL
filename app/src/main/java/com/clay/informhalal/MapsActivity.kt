@@ -21,6 +21,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+//        mapFragment.setmy
     }
 
     /**
@@ -33,36 +34,38 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-        val bundle=intent.extras
-        var lokasi:LatLng = LatLng(-10.1749436,123.5446778)
+            mMap = googleMap
 
-        if(bundle!=null)
-        {
-            lokasi = bundle.get("lokasi") as LatLng
-        }
+            val bundle=intent.extras
+            var lokasi:LatLng = LatLng(-10.16572447010728,123.5985479298927)
 
-        mMap.addMarker(
-            MarkerOptions()
-                .position(lokasi)
-                .title("WELCOME TO KUPANG SI RM HALAL")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.logoh )
-                )
-        )
-
-//        val kupang = LatLngBounds(
-//            LatLng(-10.183333,123.583333), LatLng(-10.0, 154.0)
-//        )
-//        val kupang = LatLng(-10.183333,123.583333)
-//        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.fromLatLngZoom(lokasi, 15f)) );
-
-//        mMap.cameraPosition
-        mMap.moveCamera (
-            CameraUpdateFactory.newLatLngZoom(
-                lokasi,
-                15.0f
+            mMap.addMarker(
+                MarkerOptions()
+                    .position(LatLng(
+                        -10.1669901,123.5972566
+                    ))
+                    .title("RUMAH MAKAN SEDERHANA")
+                    .icon(
+                        BitmapDescriptorFactory.fromResource(R.drawable.logoh)
+                    )
             )
-        )
+            mMap.addMarker(
+                MarkerOptions()
+                    .position(LatLng(
+                        -10.155912,123.630829
+                    ))
+                    .title("RUMAH MAKAN PADANG 2")
+                    .icon(
+                        BitmapDescriptorFactory.fromResource(R.drawable.logoh)
+                    )
+            )
+//        marker.
+        mMap.moveCamera (
+                CameraUpdateFactory.newLatLngZoom(
+                    lokasi,
+                    15.0f
+                )
+            )
         }
 
 }

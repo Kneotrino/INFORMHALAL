@@ -12,8 +12,34 @@
             android:id="@+id/searchRM"
             android:orientation="vertical"
             android:queryHint="Cari Rumah Makan"/>
-    <ListView
+    <TextView
+            android:text="LOKASI ANDA"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/listViewRM"/>
+            android:layout_height="wrap_content" android:id="@+id/textView2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
+            <Button
+                    android:text="PADANG"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/buttonPadang" android:layout_weight="1"/>
+            <Button
+                    android:text="JAWA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/buttonJawa" android:layout_weight="1"/>
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
+            <Button
+                    android:text="MADURA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/buttonMadura" android:layout_weight="1"/>
+            <Button
+                    android:text="LAIN-LAIN"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:id="@+id/buttonLainLain" android:layout_weight="1"/>
+        </TableRow>
+    </TableLayout>
 </LinearLayout>
