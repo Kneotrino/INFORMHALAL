@@ -36,30 +36,25 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
             mMap = googleMap
 
-            val bundle=intent.extras
             var lokasi:LatLng = LatLng(-10.16572447010728,123.5985479298927)
 
-            mMap.addMarker(
-                MarkerOptions()
-                    .position(LatLng(
-                        -10.1669901,123.5972566
-                    ))
-                    .title("RUMAH MAKAN SEDERHANA")
-                    .icon(
-                        BitmapDescriptorFactory.fromResource(R.drawable.logoh)
-                    )
-            )
-            mMap.addMarker(
-                MarkerOptions()
-                    .position(LatLng(
-                        -10.155912,123.630829
-                    ))
-                    .title("RUMAH MAKAN PADANG 2")
-                    .icon(
-                        BitmapDescriptorFactory.fromResource(R.drawable.logoh)
-                    )
-            )
-//        marker.
+
+            val values = modelRumahMakan.values();
+            for (value in values) {
+                mMap.addMarker(
+                    MarkerOptions()
+                        .position(
+                            LatLng(
+                                value.loc_lat,
+                                value.loc_lng
+                            )
+                        )
+                        .title(value.nama)
+                        .icon(
+                            BitmapDescriptorFactory.fromResource(R.drawable.logoh)
+                        )
+                )
+            }
         mMap.moveCamera (
                 CameraUpdateFactory.newLatLngZoom(
                     lokasi,

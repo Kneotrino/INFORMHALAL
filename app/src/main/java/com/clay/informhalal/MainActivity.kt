@@ -14,6 +14,9 @@ import android.widget.ListView
 import android.widget.TextView
 import android.app.Activity
 import android.net.Uri
+import java.io.IOException
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 //        val btnJawa = findViewById<Button>(R.id.buttonJawa)
 //        val btnMadura = findViewById<Button>(R.id.buttonMadura)
         val btnPadang = findViewById<Button>(R.id.buttonPadang)
-//        val btnLain = findViewById<Button>(R.id.buttonLainLain)
+        val btnLain = findViewById<Button>(R.id.buttonLainLain)
 
         btnPadang.setOnClickListener {
             println("test padang")
@@ -33,9 +36,31 @@ class MainActivity : AppCompatActivity() {
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(i)
         }
+        btnLain.setOnClickListener {
+            println("test lain")
+            val jsonFromAsset = loadJSONFromAsset(this)
+            println("jsonFromAsset = ${jsonFromAsset}")
+        }
+
+
     }
 
+    fun loadJSONFromAsset(context: Context): String {
+        var json: String = "FAILED 0"
+        try {
+            val input = context.assets.open("response.json")
+            val size = input.available()
+            val buffer = ByteArray(size)
+            input.read(buffer)
+            input.close()
+            json = String(buffer)
 
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return "FAILED -1"
+        }
+        return json
+    }
 
 
 //    class MyAdapter(private val context: Context, private val items: Array<modelRumahMakan>) : BaseAdapter() {
