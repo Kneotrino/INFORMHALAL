@@ -14,6 +14,8 @@ import android.widget.ListView
 import android.widget.TextView
 import android.app.Activity
 import android.net.Uri
+import android.util.Log
+import com.google.gson.Gson
 import java.io.IOException
 
 
@@ -25,41 +27,57 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val btnJawa = findViewById<Button>(R.id.buttonJawa)
-//        val btnMadura = findViewById<Button>(R.id.buttonMadura)
+        val btnJawa = findViewById<Button>(R.id.buttonJawa)
+        val btnMadura = findViewById<Button>(R.id.buttonMadura)
         val btnPadang = findViewById<Button>(R.id.buttonPadang)
         val btnLain = findViewById<Button>(R.id.buttonLainLain)
 
         btnPadang.setOnClickListener {
-            println("test padang")
-            val i = Intent(this, MapsActivity::class.java)
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(i)
+            openMapsActivity(this,"padang.json")
         }
+        btnJawa.setOnClickListener {
+            openMapsActivity(this,"jawa.json")
+        }
+        btnMadura.setOnClickListener {
+            openMapsActivity(this,"madura.json")
+        }
+
+
         btnLain.setOnClickListener {
             println("test lain")
-            val jsonFromAsset = loadJSONFromAsset(this)
-            println("jsonFromAsset = ${jsonFromAsset}")
+            val builder = Uri.Builder()
+            builder.scheme("https")
+                .authority("maps.googleapis.com")
+                .appendPath("maps")
+                .appendPath("api")
+                .appendPath("place")
+                .appendPath("textsearch")
+                .appendPath("json")
+                .appendQueryParameter("query", "Rumah Makan")
+                .appendQueryParameter("location", "-10.1749436,123.5446778")
+                .appendQueryParameter("rankedBy", "distance")
+                .appendQueryParameter("keyword", "halal")
+                .appendQueryParameter("key", "AIzaSyAbEL810DZ5tkDdB31yOmX3h9ocbrbQj4g")
+            val myUrl = builder.build().toString()
+            println("myUrl = ${myUrl}")
+
+            val rest = requestHandler.readingRest(this, myUrl)
+
+            var gson = Gson()
+            var data = gson.fromJson(rest, googlePlace::class.java)
+            Log.d("data.status","${data.status}")
+            Log.d("data.results.size", "${data.results.size}")
+
         }
 
 
     }
 
-    fun loadJSONFromAsset(context: Context): String {
-        var json: String = "FAILED 0"
-        try {
-            val input = context.assets.open("response.json")
-            val size = input.available()
-            val buffer = ByteArray(size)
-            input.read(buffer)
-            input.close()
-            json = String(buffer)
-
-        } catch (ex: IOException) {
-            ex.printStackTrace()
-            return "FAILED -1"
-        }
-        return json
+    fun openMapsActivity(context: Context, json: String): Unit {
+        val i = Intent(this, MapsActivity::class.java)
+        i.putExtra("json", json)
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(i)
     }
 
 

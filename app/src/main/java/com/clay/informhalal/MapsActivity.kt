@@ -8,20 +8,25 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import android.content.Intent
+import android.util.Log
+import com.google.gson.Gson
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+    var jsonSource = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+        jsonSource = intent.getStringExtra("json")
+
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-//        mapFragment.setmy
     }
 
     /**
@@ -36,31 +41,37 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
             mMap = googleMap
 
-            var lokasi:LatLng = LatLng(-10.16572447010728,123.5985479298927)
+            var myLokasi:LatLng = LatLng(-10.16572447010728,123.5985479298927)
 
+            val jsonFromAsset = requestHandler.loadJSONFromAsset(this, jsonSource)
+            var gson = Gson()
+            var data = gson.fromJson(jsonFromAsset, googlePlace::class.java)
+            Log.d("data.status","${data.status}")
+            Log.d("data.results.size", "${data.results.size}")
 
-            val values = modelRumahMakan.values();
-            for (value in values) {
+            val list = data.results
+            for (i in list) {
                 mMap.addMarker(
                     MarkerOptions()
                         .position(
                             LatLng(
-                                value.loc_lat,
-                                value.loc_lng
-                            )
+                                i.geometry.location.lat,
+                                i.geometry.location.lng
+                                )
                         )
-                        .title(value.nama)
+                        .title(i.name)
                         .icon(
                             BitmapDescriptorFactory.fromResource(R.drawable.logoh)
                         )
                 )
             }
-        mMap.moveCamera (
-                CameraUpdateFactory.newLatLngZoom(
-                    lokasi,
-                    15.0f
+
+            mMap.moveCamera (
+                    CameraUpdateFactory.newLatLngZoom(
+                        myLokasi,
+                        15.0f
+                    )
                 )
-            )
         }
 
 }
