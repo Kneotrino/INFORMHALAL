@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 .appendQueryParameter("location", "-10.1749436,123.5446778")
                 .appendQueryParameter("rankedBy", "distance")
                 .appendQueryParameter("keyword", "halal")
-                .appendQueryParameter("key", "AIzaSyAbEL810DZ5tkDdB31yOmX3h9ocbrbQj4g")
+                .appendQueryParameter("key", "AIzaSyAEjt_g770Ad3uShs286UXLaB6eQo8oySk")
             val myUrl = builder.build().toString()
             println("myUrl = ${myUrl}")
 
@@ -74,61 +74,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openMapsActivity(context: Context, json: String): Unit {
-        val i = Intent(this, MapsActivity::class.java)
+        val i = Intent(context, MapsActivity::class.java)
         i.putExtra("json", json)
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(i)
     }
-
-
-//    class MyAdapter(private val context: Context, private val items: Array<modelRumahMakan>) : BaseAdapter() {
-//
-//        override fun getCount(): Int {
-//            return items.size
-//        }
-//
-//        override fun getItem(position: Int): Any {
-//            return items[position]
-//        }
-//
-//        override fun getItemId(position: Int): Long {
-//            return 0
-//        }
-//
-//        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-//            var listItem = convertView
-//            if (listItem == null)
-//                listItem = LayoutInflater.from(context).inflate(
-//                    R.layout.layout_rm,
-//                    parent,
-//                    false
-//                )
-//
-//            val textNama = listItem?.findViewById<TextView>(R.id.textViewNama)
-//            val textKel = listItem?.findViewById<TextView>(R.id.textViewKelurahan)
-//            val textAlamat = listItem?.findViewById<TextView>(R.id.textViewAlamat)
-//            val textJamBuka = listItem?.findViewById<TextView>(R.id.textViewWaktu)
-//            val textKet = listItem?.findViewById<TextView>(R.id.textViewKet)
-//            val btnMaps = listItem?.findViewById<Button>(R.id.buttonMaps)
-//
-//            textNama?.text = items[position].nama
-//            textAlamat?.text = items[position].alamat
-//            textKel?.text = items[position].kelurahan
-//            textJamBuka?.text = items[position].getJadwal()
-//            textKet?.text = items[position].jenis
-//
-//            btnMaps?.setOnClickListener({
-////                val i = Intent(context, MapsActivity::class.java)
-////                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-////                i.putExtra("lokasi",items[position].lokasi)
-////                context.startActivity(i)
-//                val uri = "https://www.google.com/maps/place/Rumah+Makan+Persada/@-10.1753701,123.5923084,16z/data=!4m5!3m4!1s0x2c569ca1a2b435e7:0x51eba4ddf406b17d!8m2!3d-10.1753701!4d123.5966858"
-//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-//                intent.setPackage("com.google.android.apps.maps");
-//                context.startActivity(intent)
-//            })
-//            return listItem!!
-//        }
-//    }
 
 }

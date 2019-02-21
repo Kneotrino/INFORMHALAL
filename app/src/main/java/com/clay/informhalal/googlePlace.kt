@@ -1,11 +1,11 @@
 package com.clay.informhalal
 
-data class googlePlace(
+data class googlePlace (
     val html_attributions: List<Any>,
     val results: List<Result>,
     val status: String
 ) {
-    data class Result(
+    data class Result (
         val formatted_address: String,
         val geometry: Geometry,
         val icon: String,
