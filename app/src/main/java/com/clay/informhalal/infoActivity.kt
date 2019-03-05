@@ -10,11 +10,13 @@ import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.TextView
+import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 
 
 class infoActivity : AppCompatActivity() {
     var jsonSource = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info)
@@ -24,6 +26,18 @@ class infoActivity : AppCompatActivity() {
         val nama = findViewById<TextView>(R.id.textNama)
         val alamat = findViewById<TextView>(R.id.textAlamat)
         val rating = findViewById<TextView>(R.id.textRating)
+
+        val urlat = intent.getDoubleExtra("lat",-10.162353)
+        val urlng = intent.getDoubleExtra("long", 123.5915637)
+
+        val mylat = intent.getDoubleExtra("myLat",-10.162353)
+        val mylng = intent.getDoubleExtra("myLng", 123.5915637)
+
+        val urLokasi = LatLng(urlat,urlng)
+        val myLokasi = LatLng(mylat,mylng)
+
+        println("myLokasi = ${myLokasi}")
+        println("urLokasi = ${urLokasi}")
 
         nama.setText(intent.getStringExtra("nama"))
         alamat.setText(intent.getStringExtra("alamat"))

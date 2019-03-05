@@ -1,5 +1,6 @@
 package com.clay.informhalal
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -19,12 +20,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     var jsonSource = ""
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
 
         jsonSource = intent.getStringExtra("json")
+        latitude = intent.getDoubleExtra("lat",-10.162353)
+        longitude = intent.getDoubleExtra("long", 123.5915637)
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -40,14 +45,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+    @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
             mMap = googleMap
 
-            var myLokasi:LatLng = LatLng(-10.16572447010728,123.5985479298927)
+//            var myLokasi:LatLng = LatLng(-10.16572447010728,123.5985479298927)
+            val myLokasi:LatLng = LatLng(latitude,longitude)
 
             val jsonFromAsset = requestHandler.loadJSONFromAsset(this, jsonSource)
-            var gson = Gson()
-            var data = gson.fromJson(jsonFromAsset, googlePlace::class.java)
+            val gson = Gson()
+            val data = gson.fromJson(jsonFromAsset, googlePlace::class.java)
             Log.d("data.status","${data.status}")
             Log.d("data.results.size", "${data.results.size}")
 
@@ -55,31 +62,33 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             val map:HashMap<Marker,googlePlace.Result> = hashMapOf()
 
+            this.mMap.getUiSettings().setMyLocationButtonEnabled(false)
+            this.mMap.setMyLocationEnabled(true)
 
             for (i in list) {
-                    val addMarker = mMap.addMarker(
-                        MarkerOptions()
-                            .position(
-                                LatLng(
-                                    i.geometry.location.lat,
-                                    i.geometry.location.lng
+                        val addMarker = mMap.addMarker(
+                            MarkerOptions()
+                                .position(
+                                    LatLng(
+                                        i.geometry.location.lat,
+                                        i.geometry.location.lng
+                                    )
                                 )
-                            )
-                            .title(i.name)
-                            .icon(
-                                BitmapDescriptorFactory.fromResource(R.drawable.logoh)
-                            )
+                                .title(i.name)
+                                .icon(
+                                    BitmapDescriptorFactory.fromResource(R.drawable.logoh)
+                                )
 
-                    )
-                    map.put(addMarker,i)
-                }
+                        )
+                        map.put(addMarker,i)
+                    }
 
-            mMap.moveCamera (
-                    CameraUpdateFactory.newLatLngZoom(
-                        myLokasi,
-                        15.0f
+                mMap.moveCamera (
+                        CameraUpdateFactory.newLatLngZoom(
+                            myLokasi,
+                            15.0f
+                        )
                     )
-                )
 
             mMap.setOnMarkerClickListener(GoogleMap.OnMarkerClickListener { marker ->
                     val get = map.get(marker)
@@ -89,6 +98,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     i.putExtra("alamat", get!!.formatted_address)
                     i.putExtra("rating", get!!.rating.toString())
                     i.putExtra("id", get!!.id)
+                    i.putExtra("myLat", myLokasi.latitude)
+                    i.putExtra("myLng", myLokasi.longitude)
+                    i.putExtra("lat", get!!.geometry.location.lat )
+                    i.putExtra("long", get!!.geometry.location.lng )
 //                    i.putExtra("geometry", get!!.geometry)
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(i)

@@ -7,6 +7,18 @@
         android:layout_height="match_parent"
         tools:context=".infoActivity" android:orientation="vertical">
 
+    <Button
+            android:text="Buka Lokasi Google Map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/buttonOpenMap"
+            android:drawableLeft="@android:drawable/ic_dialog_map"
+            android:background="@color/ic_logo_background" style="@style/TextAppearance.AppCompat.Large.Inverse"/>
+    <Button
+            android:text="Dapat Jalur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/buttonJalur"
+            android:drawableLeft="@android:drawable/ic_menu_directions"
+            android:background="@color/ic_logo_background" style="@style/TextAppearance.AppCompat.Large.Inverse"/>
     <TextView
             android:text="Nama"
             android:layout_width="match_parent"
