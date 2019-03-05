@@ -95,4 +95,16 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="buka_lokasi_google_map">Buka Lokasi Google Map</string>
+    <string name="buka_jalur_google_map">BUKA JALUR GOOGLE MAP</string>
+    <string name="nama">Nama</string>
+    <string name="textnama">TextNama</string>
+    <string name="alamat">Alamat</string>
+    <string name="rating">Rating</string>
+    <string name="menu">Menu</string>
+    <string name="lokasi_anda">LOKASI ANDA</string>
+    <string name="padang">PADANG</string>
+    <string name="jawa">JAWA</string>
+    <string name="madura">MADURA</string>
+    <string name="pencarian">Pencarian</string>
 </resources>

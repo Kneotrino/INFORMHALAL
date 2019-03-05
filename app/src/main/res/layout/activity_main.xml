@@ -2,18 +2,11 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity" android:orientation="vertical">
-    <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchRM"
-            android:orientation="vertical"
-            android:queryHint="Cari Rumah Makan"/>
     <TextView
-            android:text="LOKASI ANDA"
+            android:text="@string/lokasi_anda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/textViewLocation"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
@@ -23,23 +16,27 @@
 
         <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
             <Button
-                    android:text="PADANG"
+                    android:text="@string/padang"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:id="@+id/buttonPadang" android:layout_weight="1"/>
+                    android:layout_height="match_parent" android:id="@+id/buttonPadang" android:layout_weight="1"
+                    tools:ignore="ButtonStyle"/>
             <Button
-                    android:text="JAWA"
+                    android:text="@string/jawa"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:id="@+id/buttonJawa" android:layout_weight="1"/>
+                    android:layout_height="match_parent" android:id="@+id/buttonJawa" android:layout_weight="1"
+                    tools:ignore="ButtonStyle"/>
         </TableRow>
         <TableRow android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
             <Button
-                    android:text="MADURA"
+                    android:text="@string/madura"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:id="@+id/buttonMadura" android:layout_weight="1"/>
+                    android:layout_height="match_parent" android:id="@+id/buttonMadura" android:layout_weight="1"
+                    tools:ignore="ButtonStyle"/>
             <Button
-                    android:text="LAIN-LAIN"
+                    android:text="@string/pencarian"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:id="@+id/buttonLainLain" android:layout_weight="1"/>
+                    android:layout_height="match_parent" android:id="@+id/buttonLainLain" android:layout_weight="1"
+                    tools:ignore="ButtonStyle"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>

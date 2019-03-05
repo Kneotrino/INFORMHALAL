@@ -50,12 +50,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap = googleMap
 
 //            var myLokasi:LatLng = LatLng(-10.16572447010728,123.5985479298927)
-            val myLokasi:LatLng = LatLng(latitude,longitude)
+            val myLokasi = LatLng(latitude,longitude)
 
             val jsonFromAsset = requestHandler.loadJSONFromAsset(this, jsonSource)
             val gson = Gson()
             val data = gson.fromJson(jsonFromAsset, googlePlace::class.java)
-            Log.d("data.status","${data.status}")
             Log.d("data.results.size", "${data.results.size}")
 
             val list = data.results
@@ -93,15 +92,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.setOnMarkerClickListener(GoogleMap.OnMarkerClickListener { marker ->
                     val get = map.get(marker)
                     val i = Intent(this, infoActivity::class.java)
-                    i.putExtra("json", jsonSource)
-                    i.putExtra("nama", get!!.name)
-                    i.putExtra("alamat", get!!.formatted_address)
-                    i.putExtra("rating", get!!.rating.toString())
-                    i.putExtra("id", get!!.id)
+                    i.putExtra("json", "mockMenu.json")
+                    i.putExtra("nama", get?.name)
+                    i.putExtra("alamat", get?.formatted_address)
+                    i.putExtra("rating", get?.rating.toString())
+                    i.putExtra("id", get?.place_id)
                     i.putExtra("myLat", myLokasi.latitude)
                     i.putExtra("myLng", myLokasi.longitude)
-                    i.putExtra("lat", get!!.geometry.location.lat )
-                    i.putExtra("long", get!!.geometry.location.lng )
+                    i.putExtra("lat", get?.geometry?.location?.lat )
+                    i.putExtra("long", get?.geometry?.location?.lng )
 //                    i.putExtra("geometry", get!!.geometry)
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(i)

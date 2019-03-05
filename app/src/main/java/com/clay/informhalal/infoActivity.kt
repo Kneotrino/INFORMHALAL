@@ -1,17 +1,20 @@
 package com.clay.informhalal
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
+import java.util.*
 
 
 class infoActivity : AppCompatActivity() {
@@ -36,6 +39,40 @@ class infoActivity : AppCompatActivity() {
         val urLokasi = LatLng(urlat,urlng)
         val myLokasi = LatLng(mylat,mylng)
 
+        val buttonOpenMap = findViewById<Button>(R.id.buttonOpenMap)
+        val buttonOpenDirection = findViewById<Button>(R.id.buttonJalur)
+
+        buttonOpenDirection.setOnClickListener {
+            val uri = String.format(
+                Locale.ENGLISH,
+                "http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f",
+                mylat,
+                mylng,
+                urlat,
+                urlng
+            )
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+            intent.setPackage("com.google.android.apps.maps")
+            startActivity(intent)
+
+        }
+        buttonOpenMap.setOnClickListener {
+            val builder = Uri.Builder()
+            builder.scheme("https")
+                .authority("www.google.com")
+                .appendPath("maps")
+                .appendPath("search")
+                .appendPath("")
+                .appendQueryParameter("api", "1")
+                .appendQueryParameter("query", intent.getStringExtra("nama"))
+                .appendQueryParameter("query_place_id", intent.getStringExtra("id"))
+            val key = builder.build().toString()
+            println("key = ${key}")
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(key))
+            startActivity(intent)
+        }
+
+
         println("myLokasi = ${myLokasi}")
         println("urLokasi = ${urLokasi}")
 
@@ -43,7 +80,7 @@ class infoActivity : AppCompatActivity() {
         alamat.setText(intent.getStringExtra("alamat"))
         rating.setText(intent.getStringExtra("rating"))
 
-        val asset = requestHandler.loadJSONFromAsset(this, "mockMenu.json")
+        val asset = requestHandler.loadJSONFromAsset(this, jsonSource)
         val menu = Gson().fromJson(asset, Menu::class.java)
         val menuResult = ArrayList(menu.results)
 
@@ -77,7 +114,7 @@ class infoActivity : AppCompatActivity() {
         }
 
         override fun getItemId(position: Int): Long {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            return 0
         }
 
         override fun getCount(): Int {

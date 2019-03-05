@@ -59,5 +59,9 @@ data class googlePlace (
             val photo_reference: String,
             val width: Int
         )
+
+        override fun toString(): String {
+            return name
+        }
     }
 }
