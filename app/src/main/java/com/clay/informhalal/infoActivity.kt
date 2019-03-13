@@ -25,6 +25,7 @@ class infoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_info)
 
         jsonSource = intent.getStringExtra("json")
+        println("jsonSource = ${jsonSource}")
 
         val nama = findViewById<TextView>(R.id.textNama)
         val alamat = findViewById<TextView>(R.id.textAlamat)

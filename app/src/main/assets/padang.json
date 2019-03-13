@@ -41,7 +41,7 @@
             "global_code" : "5QX5RHFW+VM"
          },
          "rating" : 4.3,
-         "reference" : "ChIJ5zW0oqGcViwRfbEG9N2k61E",
+         "reference" : "padangMenu.json",
          "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
          "user_ratings_total" : 38
       },
@@ -85,7 +85,7 @@
             "global_code" : "5QX5RHMW+6W"
          },
          "rating" : 3.9,
-         "reference" : "ChIJLxuNF72cViwRIdFapAWHIbE",
+         "reference" : "padangMenu.json",
          "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
          "user_ratings_total" : 149
       },
@@ -129,7 +129,7 @@
             "global_code" : "5QX5VJ38+V3"
          },
          "rating" : 4.1,
-         "reference" : "ChIJH6Gm89KcViwRqsiJYKbbm_0",
+         "reference" : "padangMenu.json",
          "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
          "user_ratings_total" : 89
       },
@@ -173,7 +173,7 @@
             "global_code" : "5QX5RJVJ+J8"
          },
          "rating" : 4.1,
-         "reference" : "ChIJ-07wl0eDViwRqKrWv65CCvI",
+         "reference" : "padangMenu.json",
          "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
          "user_ratings_total" : 230
       },
@@ -207,7 +207,7 @@
             "global_code" : "5QX5RG4M+62"
          },
          "rating" : 3.2,
-         "reference" : "ChIJObTyufybViwRcWeOJNexukg",
+         "reference" : "padangMenu.json",
          "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
          "user_ratings_total" : 5
       },
@@ -238,7 +238,7 @@
             "global_code" : "5QX5RH8M+M8"
          },
          "rating" : 0,
-         "reference" : "ChIJT4R5t3ybViwRiUrwNXDPHuw",
+         "reference" : "padangMenu.json",
          "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
          "user_ratings_total" : 0
       },
@@ -279,7 +279,7 @@
             "global_code" : "5QX5RHQM+FM"
          },
          "rating" : 3.9,
-         "reference" : "ChIJT5lRn5KcViwRaOcbde7CvXI",
+         "reference" : "padangMenu.json",
          "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
          "user_ratings_total" : 10
       },
@@ -320,7 +320,7 @@
             "global_code" : "5QX5RHFV+RC"
          },
          "rating" : 3.8,
-         "reference" : "ChIJLYqhDZ-cViwRtLCWsR6-TV0",
+         "reference" : "padangMenu.json",
          "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
          "user_ratings_total" : 25
       }

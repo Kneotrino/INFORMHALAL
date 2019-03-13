@@ -92,7 +92,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             mMap.setOnMarkerClickListener(GoogleMap.OnMarkerClickListener { marker ->
                     val get = map.get(marker)
                     val i = Intent(this, infoActivity::class.java)
-                    i.putExtra("json", "mockMenu.json")
+                    i.putExtra("json", get?.reference)
                     i.putExtra("nama", get?.name)
                     i.putExtra("alamat", get?.formatted_address)
                     i.putExtra("rating", get?.rating.toString())

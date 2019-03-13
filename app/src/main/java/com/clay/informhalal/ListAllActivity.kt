@@ -58,7 +58,7 @@ class ListAllActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
         mListView!!.setOnItemClickListener { _, _, position, _ ->
             val get = mArrayList!!.get(position)
             val i = Intent(this, infoActivity::class.java)
-            i.putExtra("json", "mockMenu.json")
+            i.putExtra("json", get.reference)
             i.putExtra("nama", get.name)
             i.putExtra("alamat", get.formatted_address)
             i.putExtra("rating", get.rating.toString())
