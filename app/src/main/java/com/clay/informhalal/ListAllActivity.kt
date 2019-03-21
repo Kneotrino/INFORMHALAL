@@ -55,8 +55,10 @@ class ListAllActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
         mAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1
             , mArrayList!!)
         mListView!!.adapter = mAdapter
+        mListView!!.isTextFilterEnabled = true
         mListView!!.setOnItemClickListener { _, _, position, _ ->
-            val get = mArrayList!!.get(position)
+
+            val get = mAdapter!!.getItem(position)
             val i = Intent(this, infoActivity::class.java)
             i.putExtra("json", get.reference)
             i.putExtra("nama", get.name)

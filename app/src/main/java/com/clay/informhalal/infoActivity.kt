@@ -85,8 +85,11 @@ class infoActivity : AppCompatActivity() {
         val menu = Gson().fromJson(asset, Menu::class.java)
         val menuResult = ArrayList(menu.results)
 
+        var newMenu = menuResult.filterNot { s -> s!!.Harga.equals("0")}
+
+
         val listView = findViewById<ListView>(R.id.listMenu)
-        listView.adapter = MyAdapter(this,menuResult)
+        listView.adapter = MyAdapter(this, newMenu as ArrayList<Menu.Result?>)
 
     }
 
@@ -105,9 +108,8 @@ class infoActivity : AppCompatActivity() {
 
             text1!!.setText(items[position]!!.menu)
             text2!!.setText(items[position]!!.Harga)
+
             return listItem!!
-
-
         }
 
         override fun getItem(position: Int): Any {
