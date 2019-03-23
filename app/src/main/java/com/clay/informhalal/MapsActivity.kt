@@ -75,7 +75,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                                 )
                                 .title(i.name)
                                 .icon(
-                                    BitmapDescriptorFactory.fromResource(R.drawable.logoh)
+                                    BitmapDescriptorFactory.fromResource(R.drawable.logos)
                                 )
 
                         )
@@ -101,7 +101,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     i.putExtra("myLng", myLokasi.longitude)
                     i.putExtra("lat", get?.geometry?.location?.lat )
                     i.putExtra("long", get?.geometry?.location?.lng )
-//                    i.putExtra("geometry", get!!.geometry)
+                    i.putExtra("img", get?.photos?.first()?.photo_reference)
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(i)
             false

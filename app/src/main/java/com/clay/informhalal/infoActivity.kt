@@ -8,12 +8,10 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.Button
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import java.util.*
 
 
@@ -79,7 +77,29 @@ class infoActivity : AppCompatActivity() {
 
         nama.setText(intent.getStringExtra("nama"))
         alamat.setText(intent.getStringExtra("alamat"))
-        rating.setText(intent.getStringExtra("rating"))
+        rating.setText("Rating : " + intent.getStringExtra("rating"))
+
+        val img = intent.getStringExtra("img")
+        val builder = Uri.Builder()
+        builder.scheme("https")
+            .authority("maps.googleapis.com")
+            .appendPath("maps")
+            .appendPath("api")
+            .appendPath("place")
+            .appendPath("photo")
+            .appendQueryParameter("maxheight", "200")
+            .appendQueryParameter("photoreference", img)
+            .appendQueryParameter("sensor", "false")
+            .appendQueryParameter("key", "AIzaSyAEjt_g770Ad3uShs286UXLaB6eQo8oySk")
+        val myUrl = builder.build().toString()
+        println("myUrl = ${myUrl}")
+
+        val imageView = findViewById<ImageView>(R.id.image_rm)
+
+        Picasso.get()
+            .load(myUrl)
+            .error(R.drawable.halalrm)
+            .into(imageView);
 
         val asset = requestHandler.loadJSONFromAsset(this, jsonSource)
         val menu = Gson().fromJson(asset, Menu::class.java)

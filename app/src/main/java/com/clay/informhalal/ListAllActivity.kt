@@ -69,6 +69,7 @@ class ListAllActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
             i.putExtra("myLng", myLokasi.longitude)
             i.putExtra("lat", get.geometry.location.lat )
             i.putExtra("long", get.geometry.location.lng )
+            i.putExtra("img", get.photos.first().photo_reference)
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(i)
         }
